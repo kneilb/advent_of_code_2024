@@ -22,6 +22,6 @@ mod tests {
     fn day3_real() {
 	let data = std::fs::read_to_string("data/day3.txt").unwrap();
 	let result = day3(&data);
-	assert_eq!(result, 670);
+	assert_eq!(result, 174336360);
     }
 }
