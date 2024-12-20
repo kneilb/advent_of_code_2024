@@ -19,43 +19,51 @@ const DIRECTIONS: [(i32, i32); 8] = [
     (1, -1),  // Up / left
 ];
 
-// Assumes all row & columns have the same length...
 fn check_for_letter(letter: char, x: i32, y: i32, grid: &Vec<Vec<char>>, width: usize, height: usize) -> bool {
-    if y >= 0 && (y as usize) < height && x >= 0 && (x as usize) < width {
-	return grid[y as usize][x as usize] == letter;
+    if x < 0 || y < 0 {
+	return false;
     }
-    false
+
+    let x = x as usize;
+    let y = y as usize;
+
+    if x >= width || y >= height  {
+	return false;
+    }
+
+    grid[y][x] == letter
 }
 
 fn day4(input: &str) -> usize {
     let grid: Vec<Vec<char>> = input.lines().map(|line| line.chars().collect()).collect();
+
+    // Assumes all row & columns have the same length...
     let height: usize = grid.len();
     let width: usize = grid[0].len();
 
     print!("{:?}\n", grid);
     let mut matches: usize = 0;
 
-    for (y, vec) in grid.clone().into_iter().enumerate() {
-	for (x, val) in vec.into_iter().enumerate() {
-	    if val == 'X' {
-		print!("FOUND X at ({}, {})\n", x, y);
-		for d in DIRECTIONS {
-		    let mut search_x: i32 = x as i32;
-		    let mut search_y: i32 = y as i32;
+    for y in 0..height {
+	for x in 0..width {
+	    for d in DIRECTIONS {
+		let mut search_x: i32 = x as i32;
+		let mut search_y: i32 = y as i32;
 
-		    for l in ['M', 'A', 'S'] {
+		for l in ['X', 'M', 'A', 'S'] {
+		    if l != 'X' {
 			search_x += d.1;
 			search_y += d.0;
+		    }
 
-			if check_for_letter(l, search_x, search_y, &grid, width, height) {
-			    print!("FOUND {} at ({}, {})\n", l, search_x, search_y);
-			    if l == 'S' {
-				matches += 1;
-			    }
+		    if check_for_letter(l, search_x, search_y, &grid, width, height) {
+			print!("FOUND {} at ({}, {})\n", l, search_x, search_y);
+			if l == 'S' {
+			    matches += 1;
 			}
-			else {
-			    break;
-			}
+		    }
+		    else {
+			break;
 		    }
 		}
 	    }
@@ -82,4 +90,3 @@ mod tests {
 	assert_eq!(result, 2521);
     }
 }
-
