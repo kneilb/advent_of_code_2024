@@ -55,12 +55,6 @@ fn day2(input: &str) -> usize {
 	.len()
 }
 
-fn main() {
-    let data = std::fs::read_to_string("data/day2_example.txt").unwrap();
-    let result = day2(&data);
-    assert_eq!(result, 2);
-}
-
 #[cfg(test)]
 mod tests {
     use super::*;

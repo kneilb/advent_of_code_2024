@@ -9,12 +9,6 @@ fn day1(input: &str) -> i32 {
     return left_vec.into_iter().zip(right_vec.into_iter()).map(|(l, r)| { (r - l).abs() }).sum();
 }
 
-fn main() {
-    let data = std::fs::read_to_string("data/day1_example.txt").unwrap();
-    let result = day1(&data);
-    assert_eq!(result, 11);
-}
-
 #[cfg(test)]
 mod tests {
     use super::*;
