@@ -65,13 +65,6 @@ fn day5(input: &str) -> usize {
 
     total
 }
-
-fn main() {
-    let data = std::fs::read_to_string("data/day5_example.txt").unwrap();
-    let result = day5(&data);
-    assert_eq!(result, 143);
-}
-
     
 #[cfg(test)]
 mod tests {

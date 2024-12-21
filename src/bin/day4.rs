@@ -71,7 +71,7 @@ fn day4(input: &str) -> usize {
     }
     matches
 }
-    
+
 #[cfg(test)]
 mod tests {
     use super::*;
