@@ -65,7 +65,7 @@ fn day5(input: &str) -> usize {
 
     total
 }
-    
+
 #[cfg(test)]
 mod tests {
     use super::*;
